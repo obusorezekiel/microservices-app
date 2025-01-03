@@ -81,7 +81,7 @@ jobs:
         - name: Update Manifest file
           run: |
             cd manifests
-            sed -i "s|image:.*|image: ${{ env.DOCKERHUB_ID }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG_2 }}|" ${{ env.APP_NAME }}.yml
+            sed -i "s|image:.*|image: ${{ env.DOCKERHUB_ID }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG }}|" ${{ env.APP_NAME }}.yml
 
         - name: Create Pull Request
           uses: peter-evans/create-pull-request@v5
