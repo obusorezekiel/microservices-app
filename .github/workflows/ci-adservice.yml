@@ -19,6 +19,9 @@ jobs:
     Adservice-CI:
         runs-on: ubuntu-latest
 
+        outputs:
+          image_tag: ${{ steps.tag.outputs.IMAGE_TAG_2 }}
+
         steps:
           - name: Checkout code
             uses: actions/checkout@v4
