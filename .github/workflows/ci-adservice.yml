@@ -72,7 +72,7 @@ jobs:
         - name: Checkout Manifest Repository
           uses: actions/checkout@v4
           with:
-            repository: microservices-k8s
+            repository: obusorezekiel/microservices-k8s
             token: ${{ secrets.TOKEN }}
 
         - name: Update Manifest file
@@ -88,8 +88,8 @@ jobs:
             branch: release/${{ env.APP_NAME }}-update-${{ env.IMAGE_TAG }}
             title: "Update ${{ env.APP_NAME }} image to ${{ env.DOCKERHUB_ID }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG }}"
             body: |
-              This pull request updates the ${{ env.APP_NAME }} image tag to `${{ env.DOCKERHUB_ID }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG }}`.
-              Please review and merge to deploy the updated image to the cluster.
+              This PR updates the ${{ env.APP_NAME }} image tag to `${{ env.DOCKERHUB_ID }}/${{ env.APP_NAME }}:${{ env.IMAGE_TAG }}`.
+              Please review and merge to deploy the updated image.
             base: main
 
          
