@@ -13,6 +13,7 @@ permissions:
 env:
   DOCKERHUB_ID: obusorezekiel
   MANIFEST_REPO: obusorezekiel/k8s-microservices
+
 jobs:
   Cartservice-CI:
     runs-on: ubuntu-latest
