@@ -72,7 +72,7 @@ jobs:
         - name: Checkout Manifest Repository
           uses: actions/checkout@v4
           with:
-            repository: ${{ env.MANIFEST_REPO}}
+            repository: microservices-k8s
             token: ${{ secrets.TOKEN }}
 
         - name: Update Manifest file
