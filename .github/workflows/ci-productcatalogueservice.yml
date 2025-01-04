@@ -1,26 +1,26 @@
-name: Paymentservice CI 
+name: Productcatalogservice CI 
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'src/paymentservice/**'
+      - 'src/productcatalogservice/**'
   workflow_dispatch:
 
 permissions:
-  security-events: write
-  actions: read  
-  
+  security-events: write  
+
 env:
   DOCKERHUB_ID: obusorezekiel
   MANIFEST_REPO: obusorezekiel/microservices-k8s
+
 jobs:
-  Paymentservice-CI:
+  Productcatalogservice-CI:
     runs-on: ubuntu-latest
 
     outputs:
       image_tag: ${{ steps.tag.outputs.IMAGE_TAG_2 }}
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,19 +29,19 @@ jobs:
         id: tag
         run: |
           COMMIT_SHA=$(git rev-parse --short HEAD)
-          echo "APP_NAME=paymentservice" >> $GITHUB_ENV
-          echo "IMAGE_NAME=${{ env.DOCKERHUB_ID }}/paymentservice" >> $GITHUB_ENV
+          echo "APP_NAME=productcatalogservice" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${{ env.DOCKERHUB_ID }}/productcatalogservice" >> $GITHUB_ENV
           echo "IMAGE_TAG_1=latest" >> $GITHUB_ENV
           IMAGE_TAG_2="${{ github.run_number }}-$COMMIT_SHA"
           echo "IMAGE_TAG_2=${IMAGE_TAG_2}" >> $GITHUB_ENV
           echo "IMAGE_TAG_2=${IMAGE_TAG_2}" >> $GITHUB_OUTPUT
 
       - name: Build Docker Image
-        working-directory: src/paymentservice
+        working-directory: src/productcatalogservice
         run: |
           docker build -t ${{ env.IMAGE_NAME }} .
           docker tag ${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG_2 }}
-          
+
       - name: Run Trivy Scan
         uses: aquasecurity/trivy-action@master
         with:
@@ -66,12 +66,12 @@ jobs:
           docker push ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG_2 }}
 
   Update-Manifest-Repo:
-    needs: Paymentservice-CI
+    needs: Productcatalogservice-CI
     runs-on: ubuntu-latest
 
     env:
-      APP_NAME: paymentservice
-      IMAGE_TAG: ${{ needs.paymentservice-CI.outputs.image_tag }}
+      APP_NAME: productcatalogservice
+      IMAGE_TAG: ${{ needs.Productcatalogservice-CI.outputs.image_tag }}
       
     steps:
       - name: Checkout Manifest Repository
