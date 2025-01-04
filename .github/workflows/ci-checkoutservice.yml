@@ -37,7 +37,7 @@ jobs:
           echo "IMAGE_TAG_2=${IMAGE_TAG_2}" >> $GITHUB_OUTPUT
 
       - name: Build Docker Image
-        working-directory: src/checkoutservice/src
+        working-directory: src/checkoutservice
         run: |
           docker build -t ${{ env.IMAGE_NAME }} .
           docker tag ${{ env.IMAGE_NAME }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG_2 }}
