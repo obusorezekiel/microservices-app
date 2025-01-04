@@ -8,12 +8,12 @@ on:
   workflow_dispatch:
 
 permissions:
-  security-events: write  
+  security-events: write
+  actions: read  
   
 env:
   DOCKERHUB_ID: obusorezekiel
   MANIFEST_REPO: obusorezekiel/microservices-k8s
-
 jobs:
   Cartservice-CI:
     runs-on: ubuntu-latest
