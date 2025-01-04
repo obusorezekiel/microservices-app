@@ -12,7 +12,7 @@ permissions:
   
 env:
   DOCKERHUB_ID: obusorezekiel
-  MANIFEST_REPO: obusorezekiel/k8s-microservices
+  MANIFEST_REPO: obusorezekiel/microservices-k8s
 
 jobs:
   Cartservice-CI:
